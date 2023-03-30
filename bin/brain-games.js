@@ -1,2 +1,3 @@
-import startBlock from './src/cli.js';
+import startBlock from "./src/cli.js";
+
 startBlock();

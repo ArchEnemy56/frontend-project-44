@@ -1,11 +1,19 @@
-#!/usr/bin/env node
-import readlineSync from 'readline-sync';
+import runGameEngine from '../engine.js';
+import generateRandomNumber from '../utility.js';
 
-const brainEven = () => {
-  console.log('Welcome to the Brain Games!');
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-  console.log('Answer "yes" if the number is even, otherwise answer "no".');
+const gamesRule = 'Answer "yes" if the number is even, otherwise answer "no".';
+
+const isEven = (number) => number % 2 === 0;
+
+const generateRound = () => {
+  const number = generateRandomNumber();
+
+  const isEvenOrNot = () => (isEven(number) ? 'yes' : 'no');
+
+  const rightAnswer = isEvenOrNot(number);
+  const question = `${'Question:'} ${number}`;
+
+  return [question, rightAnswer];
 };
 
-export default brainEven;
+export default () => runGameEngine(gamesRule, generateRound);
